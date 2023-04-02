@@ -1,0 +1,14 @@
+.driverReg {
+  display: flex;
+  justify-content: center;
+}
+.driverReg-from {
+  width: 600px;
+}
+
+@media screen and (max-width: 800px) {
+  .driverReg-from {
+    width: 300px;
+    overflow: hidden;
+  }
+}

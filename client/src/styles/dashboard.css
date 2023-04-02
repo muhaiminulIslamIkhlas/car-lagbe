@@ -1,0 +1,59 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-right: 20px;
+  color: #1890ff;
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+.card-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.metric {
+  width: calc(33.33% - 20px);
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.metric:last-child {
+  border-right: none;
+}
+
+.metric-value {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1890ff;
+}
+
+.metric-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 10px;
+}

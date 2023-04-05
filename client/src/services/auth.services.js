@@ -99,7 +99,7 @@ export async function customerRegister(values) {
     };
 
     try {
-        await axios.post(API_BASE_URL + "register", values, config);
+        await axios.post(API_BASE_URL + "auth/customer-register", values, config);
         notification.success({
             message: 'Welcome!!!',
             description: "Registered successfully"
@@ -107,6 +107,7 @@ export async function customerRegister(values) {
         return { hasError: false };
     } catch (error) {
         forceFullyLogout(error);
+        console.log(error)
         if (error.response.status === 422) {
             const errors = error.response.data.errors;
             return { hasError: true, errors: errors };

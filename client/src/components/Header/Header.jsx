@@ -87,10 +87,10 @@ const Header = () => {
       address: values.address,
     };
     const registerResponse = await customerRegister(customerObject);
-    console.log(registerResponse);
     if (!registerResponse.hasError) {
       await onFinish({ phone: values.phone, password: values.password });
     } else {
+      console.log(registerResponse.errors)
       errorPopUp(registerResponse.errors["email"]);
       errorPopUp(registerResponse.errors["phone"]);
       errorPopUp(registerResponse.errors["password"]);
@@ -106,7 +106,9 @@ const Header = () => {
     }
   };
 
-  const onRegisterFinishFailed = (errorInfo) => {};
+  const onRegisterFinishFailed = (errorInfo) => {
+    console.log(errorInfo)
+  };
 
   const handleLogout = async () => {
     const response = await logout();

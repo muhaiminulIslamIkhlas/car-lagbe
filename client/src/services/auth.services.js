@@ -21,16 +21,20 @@ export function forceFullyLogout(error) {
 
 export async function login(phone, password) {
     try {
-        const { data } = await axios.post(API_BASE_URL + "login", {
+        const { data } = await axios.post(API_BASE_URL + "auth/login", {
             phone,
             password,
         });
-        localStorage.setItem(tokenKey, data.result.token);
-        localStorage.setItem(userKey, JSON.stringify(data.result.user));
+        localStorage.setItem(tokenKey, data.results.accessToken);
+        localStorage.setItem(userKey, JSON.stringify(data.results.user));
+        console.log(data);
+        console.log(data);
+        console.log(data.user);
         notification.success({
             message: 'Logged in successfully',
             description: data.message,
         });
+        window.location.reload(true);
 
         return true;
 
@@ -44,28 +48,15 @@ export async function login(phone, password) {
 }
 
 export async function logout() {
-    const token = getToken();
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
-    try {
-        await axios.post(API_BASE_URL + "logout", {}, config);
-        localStorage.removeItem(tokenKey);
-        localStorage.removeItem(userKey);
-        notification.success({
-            message: 'Logged out!!!',
-            description: "Logged out successfully"
-        });
+    localStorage.removeItem(tokenKey);
+    localStorage.removeItem(userKey);
+    notification.success({
+        message: 'Success',
+        description: "Logout Successfully",
+    });
+    setTimeout(function () {
         window.location.reload(true);
-        return true;
-    } catch (error) {
-        forceFullyLogout(error);
-        let statusText = error.response.data.message;
-        notification.error({
-            message: 'Something went wrong',
-            description: statusText,
-        });
-    }
+    }, 500)
 }
 
 export async function adminLogout() {

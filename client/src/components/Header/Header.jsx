@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Button, Form, Input, Modal, notification, message } from "antd";
 import { customerRegister, login, logout } from "../../services/auth.services";
 import { checkLoggedIn, getUserInfo } from "../../utils/user";
+import Logo from "../UI/atom/logo/logo";
 
 const navLinks = [
   {
@@ -32,10 +33,8 @@ const navLinks = [
   },
 ];
 
-const Header = () => {
+const Header = ({ content }) => {
   const ADMIN = 1;
-  const Customer = 2;
-  const driver = 3;
   const navigate = useNavigate();
   const menuRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -90,7 +89,7 @@ const Header = () => {
     if (!registerResponse.hasError) {
       await onFinish({ phone: values.phone, password: values.password });
     } else {
-      console.log(registerResponse.errors)
+      console.log(registerResponse.errors);
       errorPopUp(registerResponse.errors["email"]);
       errorPopUp(registerResponse.errors["phone"]);
       errorPopUp(registerResponse.errors["password"]);
@@ -107,7 +106,7 @@ const Header = () => {
   };
 
   const onRegisterFinishFailed = (errorInfo) => {
-    console.log(errorInfo)
+    console.log(errorInfo);
   };
 
   const handleLogout = async () => {
@@ -279,58 +278,6 @@ const Header = () => {
         )}
       </Modal>
       {/* ============ header top ============ */}
-      <div className="header__top">
-        <Container>
-          <Row>
-            <Col lg="6" md="6" sm="6">
-              <div className="header__top__left">
-                <span>Need Help?</span>
-                <span className="header__top__help">
-                  <i class="ri-phone-fill"></i> +1-202-555-0149
-                </span>
-              </div>
-            </Col>
-
-            <Col lg="6" md="6" sm="6">
-              <div className="header__top__right d-flex align-items-center justify-content-end gap-3">
-                {isLoggedIn ? (
-                  <>
-                    <Link to="#" className=" d-flex align-items-center gap-1">
-                      {username}
-                    </Link>
-
-                    <Link
-                      to="#"
-                      className=" d-flex align-items-center gap-1"
-                      onClick={handleLogout}
-                    >
-                      <i class="ri-logout-circle-line"></i> Logout
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      to="#"
-                      className=" d-flex align-items-center gap-1"
-                      onClick={showModal}
-                    >
-                      <i class="ri-login-circle-line"></i> Login or Register
-                    </Link>
-                    {/* /
-                    <Link
-                      to="#"
-                      className=" d-flex align-items-center gap-1"
-                      onClick={showModal}
-                    >
-                      <i class="ri-user-line"></i> Register
-                    </Link> */}
-                  </>
-                )}
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
 
       {/* =============== header middle =========== */}
       <div className="header__middle">
@@ -340,11 +287,7 @@ const Header = () => {
               <div className="logo">
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-2">
-                    <i class="ri-car-line"></i>
-                    <span>
-                      Car <br />
-                      Lagbe
-                    </span>
+                    <Logo isSecondary />
                   </Link>
                 </h1>
               </div>

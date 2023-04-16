@@ -1,0 +1,34 @@
+@import "../../../../styles/index.scss";
+
+.a-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 53px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    background-color: $white;
+
+    &--secondary {
+      border: 2px solid $primary;
+    }
+  }
+
+  &__text {
+    margin-left: 17px;
+    color: $white;
+    font-size: 26px;
+    font-weight: 600;
+
+    &--secondary {
+      color: $logo-color;
+    }
+  }
+}

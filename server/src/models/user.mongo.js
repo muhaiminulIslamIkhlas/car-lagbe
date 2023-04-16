@@ -23,7 +23,11 @@ const userSchema = mongoose.Schema({
     details: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "UserDetail",
-    }
+    },
+    password: {
+        type: String,
+        required: true,
+    },
 
 });
 

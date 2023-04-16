@@ -1,18 +1,20 @@
 const User = require('./user.mongo');
-const axios = require('axios');
+const bcrypt = require("bcrypt");
 
 async function getByPhone(phone) {
     return await User.findOne({ phone });
 }
 
 async function customerRegister(req) {
-    const { name, phone, email, address } = req.body;
+    const { name, phone, email, address, password } = req.body;
+    const hashedPwd = await bcrypt.hash(password, 10);
     const customerObj = {
         name: name,
         phone: phone,
         email: email,
         address: address,
         role: 2,
+        password: hashedPwd,
     }
 
     try {
@@ -22,7 +24,13 @@ async function customerRegister(req) {
     }
 }
 
+async function login(user, password) {
+    const { password: userPassword } = user;
+    return await bcrypt.compare(password, userPassword);
+}
+
 module.exports = {
     customerRegister,
-    getByPhone
+    getByPhone,
+    login
 }

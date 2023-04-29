@@ -5,7 +5,6 @@ async function httpCustomerRegister(req, res) {
     const { phone } = req.body;
     const duplicate = await getByPhone(phone);
     let errors;
-
     if (duplicate) {
         errors = {
             'phone': 'Phone already exist'

@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "UserDetail",
     },
+    status: {
+        type: Boolean,
+        required: true
+    },
     password: {
         type: String,
         required: true,
